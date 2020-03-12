@@ -3,71 +3,77 @@ package com.example.insurance;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.JsonReader;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 
-import javax.net.ssl.HttpsURLConnection;
-
 public class MainActivity extends AppCompatActivity {
-    String password;
+    EditText editTextLogin;
+    EditText editTextPassword;
+    TextView textView;
+    Button button;
+
+    private void initControls(){
+        editTextLogin = findViewById(R.id.editTextLogin);
+        editTextPassword = findViewById(R.id.editTextPassword);
+        button = findViewById(R.id.button);
+        textView = findViewById(R.id.text_view);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        EditText editText = (EditText)findViewById(R.id.editText);
-//        editText.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable s) {
-//                password = s.toString();
-//            }
-//        });
+        initControls();
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startSendHttpRequestMessage(editTextLogin.getText().toString(), editTextPassword.getText().toString());
+            }
+        });
     }
 
-    public void sendMessage(View view){
-        EditText editText = findViewById(R.id.editText);
-        password = editText.getText().toString();
-        runnable.run();
-    }
-
-    Runnable runnable = new Runnable() {
-        @Override
-        public void run() {
-            try {
-                URL httpClient = new URL("https://localhost:8080/login");
-                HttpsURLConnection myConnection = (HttpsURLConnection) httpClient.openConnection();
-                myConnection.setRequestMethod("POST");
-                myConnection.setDoOutput(true);
-                myConnection.getOutputStream().write(password.getBytes());
-                InputStream responseBody = myConnection.getInputStream();
-                InputStreamReader responseBodyReader = new InputStreamReader(responseBody, "UTF-8");
-                JsonReader jsonReader = new JsonReader(responseBodyReader);
-                jsonReader.beginObject();
-                TextView textView = findViewById(R.id.text_view);
-                while (jsonReader.hasNext()){
-                    textView.setText(jsonReader.nextString());
+    public void startSendHttpRequestMessage(final String login, final String password){
+        Thread sendHttpRequest = new Thread()
+        {
+            public void run(){
+                try {
+                    URL url = new URL("http://localhost/login");
+                    HttpURLConnection connection = (HttpURLConnection)url.openConnection();
+                    connection.setRequestMethod("POST");
+                    OutputStream outputStream = connection.getOutputStream();
+                    OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream);
+                    BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
+                    bufferedWriter.write("login="+login+"&password="+password);
+                    InputStream inputStream = connection.getInputStream();
+                    InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                    BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                    String line = bufferedReader.readLine();
+                    textView.setText(line);
+                    bufferedWriter.close();
+                    connection.disconnect();
+                }
+                catch (MalformedURLException e){
+                    Log.e("MalformedURL", e.getMessage(), e);
+                }
+                catch (IOException e){
+                    Log.e("IO", e.getMessage(), e);
                 }
             }
-            catch (Exception e){
-                Log.e("MainActivity", e.getMessage(), e);
-            }
-        }
-    };
+        };
+        sendHttpRequest.start();
+    }
 }
