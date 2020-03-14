@@ -3,6 +3,8 @@ package com.example.insurance;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -21,16 +23,35 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String KEY_RESPONSE_TEXT = "KEY_RESPONSE_TEXT";
     EditText editTextLogin;
     EditText editTextPassword;
     TextView textView;
     Button button;
+    Handler UiAdapter = null;
 
     private void initControls(){
         editTextLogin = findViewById(R.id.editTextLogin);
         editTextPassword = findViewById(R.id.editTextPassword);
         button = findViewById(R.id.button);
         textView = findViewById(R.id.text_view);
+        if (UiAdapter == null){
+            UiAdapter = new Handler()
+            {
+                @Override
+                public void handleMessage(Message msg) {
+                    if(msg.what == 1)
+                    {
+                        Bundle bundle = msg.getData();
+                        if(bundle != null)
+                        {
+                            String responseText = bundle.getString(KEY_RESPONSE_TEXT);
+                            textView.setText(responseText);
+                        }
+                    }
+                }
+            };
+        }
     }
 
     @Override
@@ -50,20 +71,32 @@ public class MainActivity extends AppCompatActivity {
         Thread sendHttpRequest = new Thread()
         {
             public void run(){
+                HttpURLConnection connection = null;
+                BufferedReader bufferedReader = null;
+                InputStreamReader inputStreamReader = null;
+                StringBuilder stringBuffer = new StringBuilder();
                 try {
-                    URL url = new URL("http://localhost/login");
-                    HttpURLConnection connection = (HttpURLConnection)url.openConnection();
+                    URL url = new URL("http://10.0.2.2:8080/login");
+                    connection = (HttpURLConnection)url.openConnection();
                     connection.setRequestMethod("POST");
                     OutputStream outputStream = connection.getOutputStream();
                     OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream);
                     BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
-                    bufferedWriter.write("login="+login+"&password="+password);
+                    bufferedWriter.write("?login="+login+"&password="+password);
                     InputStream inputStream = connection.getInputStream();
-                    InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-                    BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-                    String line = bufferedReader.readLine();
-                    textView.setText(line);
-                    bufferedWriter.close();
+                    inputStreamReader = new InputStreamReader(inputStream);
+                    bufferedReader = new BufferedReader(inputStreamReader);
+                    String line_from_service = bufferedReader.readLine();
+                    while (line_from_service != null){
+                        stringBuffer.append(line_from_service);
+                        line_from_service = bufferedReader.readLine();
+                    }
+                    Message message = new Message();
+                    message.what = 1;
+                    Bundle bundle = new Bundle();
+                    bundle.putString(KEY_RESPONSE_TEXT, stringBuffer.toString());
+                    message.setData(bundle);
+                    UiAdapter.sendMessage(message);
                     connection.disconnect();
                 }
                 catch (MalformedURLException e){
@@ -71,6 +104,24 @@ public class MainActivity extends AppCompatActivity {
                 }
                 catch (IOException e){
                     Log.e("IO", e.getMessage(), e);
+                }
+                finally {
+                    try {
+                        if (bufferedReader != null) {
+                            bufferedReader.close();
+                        }
+
+                        if (inputStreamReader != null) {
+                            inputStreamReader.close();
+                        }
+
+                        if (connection!= null) {
+                            connection.disconnect();
+                        }
+                    }
+                    catch (IOException ex){
+                        Log.e("IO", ex.getMessage(), ex);
+                    }
                 }
             }
         };
