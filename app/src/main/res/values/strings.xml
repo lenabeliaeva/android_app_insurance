@@ -4,4 +4,6 @@
     <string name="submit_password">Ввести</string>
     <string name="wait">Ждём пароль</string>
     <string name="enter_login">Введите логин</string>
+    <string name="title_activity_receive_message">ReceiveMessageActivity</string>
+
 </resources>

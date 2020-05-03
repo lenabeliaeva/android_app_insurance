@@ -2,6 +2,7 @@ package com.example.insurance;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -11,13 +12,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     Button button;
     Handler UiAdapter = null;
 
+    @SuppressLint("HandlerLeak")
     private void initControls(){
         editTextLogin = findViewById(R.id.editTextLogin);
         editTextPassword = findViewById(R.id.editTextPassword);
@@ -78,18 +80,19 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     URL url = new URL("http://10.0.2.2:8080/login");
                     connection = (HttpURLConnection)url.openConnection();
+                    connection.setDoOutput(true);
                     connection.setRequestMethod("POST");
-                    OutputStream outputStream = connection.getOutputStream();
-                    OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream);
-                    BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
-                    bufferedWriter.write("?login="+login+"&password="+password);
-                    InputStream inputStream = connection.getInputStream();
+                    connection.connect();
+                    DataOutputStream outputStream = new DataOutputStream(connection.getOutputStream());
+                    outputStream.writeBytes("login="+login+"&password="+password);
+                    outputStream.flush();
+                    outputStream.close();
+                    InputStream inputStream = new BufferedInputStream(connection.getInputStream());
                     inputStreamReader = new InputStreamReader(inputStream);
                     bufferedReader = new BufferedReader(inputStreamReader);
-                    String line_from_service = bufferedReader.readLine();
-                    while (line_from_service != null){
+                    String line_from_service;
+                    while ((line_from_service = bufferedReader.readLine()) != null){
                         stringBuffer.append(line_from_service);
-                        line_from_service = bufferedReader.readLine();
                     }
                     Message message = new Message();
                     message.what = 1;
@@ -101,9 +104,15 @@ public class MainActivity extends AppCompatActivity {
                 }
                 catch (MalformedURLException e){
                     Log.e("MalformedURL", e.getMessage(), e);
+                    e.printStackTrace();
                 }
                 catch (IOException e){
-                    Log.e("IO", e.getMessage(), e);
+//                    Log.e("IO", e.getMessage(), e);
+                    e.printStackTrace();
+                }
+                catch (Exception ex) {
+                    System.err.println(ex.toString());
+                    ex.printStackTrace();
                 }
                 finally {
                     try {
