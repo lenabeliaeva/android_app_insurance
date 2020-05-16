@@ -30,6 +30,7 @@ android {
 }
 
 dependencies {
+    implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'org.springframework.android:spring-android-rest-template:2.0.0.M3'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.10.2'
     implementation fileTree(dir: 'libs', include: ['*.jar'])

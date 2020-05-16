@@ -5,5 +5,9 @@
     <string name="wait">Ждём пароль</string>
     <string name="enter_login">Введите логин</string>
     <string name="title_activity_receive_message">ReceiveMessageActivity</string>
+    <string-array name="top_level_options">
+        <item>Приобрести полис</item>
+        <item>Мои страховки</item>
+    </string-array>
 
 </resources>
