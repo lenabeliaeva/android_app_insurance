@@ -163,7 +163,7 @@ public class MyPoliciesFragment extends ListFragment {
                     if (stringBuilder.toString().equals("false")) {
                         bundle.putSerializable(KEY_RESPONSE_TEXT, "false");
                     } else {
-                        System.out.println(stringBuilder.toString());
+                        System.out.println(stringBuilder);
                         user.addPolicies((List<Police>) new Gson().fromJson(stringBuilder.toString(), new TypeToken<ArrayList<Police>>() {
                         }.getType()));
                         bundle.putSerializable(KEY_RESPONSE_TEXT, (Serializable) user.getPolicies());
