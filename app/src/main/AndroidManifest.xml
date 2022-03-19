@@ -15,16 +15,32 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="28">
-        <activity android:name=".ProductListActivity"></activity>
-        <activity android:name=".MyPoliciesActivity" />
-        <activity android:name=".PoliciesCategoryActivity" />
-        <activity android:name=".TopLevelActivity" />
+        <activity android:name=".AddingExistingPoliceActivity" />
+        <activity android:name=".ProlongationActivity" />
+        <activity android:name=".PoliceActivity" />
+        <activity android:name=".PasswordActivity" />
+        <activity
+            android:name=".FillingUserActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".OrderActivity" />
+        <activity android:name=".CalculationActivity" />
+        <activity
+            android:name=".UserActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".ProductListActivity" />
+        <activity android:name=".FillingPoliceActivity" />
+        <activity
+            android:name=".SignUpActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".SignInActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <meta-data
             android:name="com.google.android.actions"
             android:resource="@xml/network_security_config" />
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".TopLevelScreen.TopLevelActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

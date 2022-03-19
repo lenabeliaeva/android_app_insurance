@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorPrimaryDark"
+    android:theme="@style/AppTheme.NoActionBar"
+    tools:context="com.example.insurance.SignInActivity">
+
+        <EditText
+            android:id="@+id/sign_in_email"
+            android:layout_width="300dp"
+            android:layout_height="70dp"
+            android:autofillHints="@string/sign_in"
+            android:background="@drawable/fields"
+            android:hint="@string/enter_email"
+            android:textColorHint="#000000"
+            android:textAlignment="center"
+            android:inputType="textEmailAddress"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.500"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.106" />
+
+        <EditText
+            android:id="@+id/sign_in_pass"
+            android:layout_width="300dp"
+            android:layout_height="70dp"
+            android:background="@drawable/fields"
+            android:hint="@string/enter_password"
+            android:textColorHint="#000000"
+            android:autofillHints="@string/enter_password"
+            android:textAlignment="center"
+            android:inputType="textPassword"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.500"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.255" />
+
+        <Button
+            android:id="@+id/sign_in_btn"
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:text="@string/sign_in"
+            android:textSize="15sp"
+            android:background="@drawable/buttons"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.43" />
+
+        <TextView
+            android:id="@+id/reg_link"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/click_here_to_sign_up"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.557"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.600" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

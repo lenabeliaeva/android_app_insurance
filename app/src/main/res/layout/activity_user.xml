@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/colorPrimaryDark"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent">
+
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="400dp"
+        android:layout_height="50dp"
+        android:autofillHints="@string/enter_name"
+        android:background="@drawable/fields"
+        android:hint="@string/enter_name"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        android:textColorHint="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.01" />
+
+    <EditText
+        android:id="@+id/otchestvo"
+        android:layout_width="400dp"
+        android:layout_height="50dp"
+        android:autofillHints="@string/enter_second_name"
+        android:background="@drawable/fields"
+        android:hint="@string/enter_second_name"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        android:textColorHint="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.11" />
+
+    <EditText
+        android:id="@+id/familiya"
+        android:layout_width="400dp"
+        android:layout_height="50dp"
+        android:autofillHints="@string/enter_surname"
+        android:background="@drawable/fields"
+        android:hint="@string/enter_surname"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        android:textColorHint="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.21" />
+
+    <EditText
+        android:id="@+id/passport"
+        android:layout_width="400dp"
+        android:layout_height="50dp"
+        android:autofillHints="@string/passport"
+        android:background="@drawable/fields"
+        android:hint="@string/passport"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:textColorHint="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.31" />
+
+    <EditText
+        android:id="@+id/city"
+        android:layout_width="400dp"
+        android:layout_height="50dp"
+        android:autofillHints="@string/city"
+        android:background="@drawable/fields"
+        android:hint="@string/city"
+        android:inputType="textEmailAddress"
+        android:textAlignment="center"
+        android:textColorHint="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.41" />
+
+    <Button
+        android:id="@+id/proceed_btn"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:background="@drawable/buttons"
+        android:text="@string/proceed"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.9"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

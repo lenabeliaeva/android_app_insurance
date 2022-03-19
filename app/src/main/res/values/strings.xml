@@ -4,10 +4,71 @@
     <string name="submit_password">Ввести</string>
     <string name="wait">Ждём пароль</string>
     <string name="enter_login">Введите логин</string>
-    <string name="title_activity_receive_message">ReceiveMessageActivity</string>
-    <string-array name="top_level_options">
-        <item>Приобрести полис</item>
-        <item>Мои страховки</item>
+    <string name="enter_email">E-mail</string>
+    <string name="get_police">Приобрести полис</string>
+    <string name="my_policies">Мои страховки</string>
+    <string name="click_here_to_sign_up">Ещё нет аккаунта? Зарегестрироваться</string>
+    <string name="click_here_to_sign_in">Уже есть аккаунт? Войти</string>
+    <string name="register">Зарегистрироваться</string>
+    <string name="sign_in">Войти</string>
+    <string name="to_watch_sign_in">Чтобы увидеть свои полисы, нужно войти в аккаунт</string>
+    <string name="osago">Расчёт ОСАГО</string>
+    <string name="casco">Расчёт КАСКО</string>
+    <string name="enter_name">Имя</string>
+    <string name="enter_second_name">Отчество</string>
+    <string name="enter_surname">Фамилия</string>
+    <string name="birth_date">Дата рождения</string>
+    <string name="passport">Серия и номер паспорта РФ</string>
+    <string name="passport_date">Дата выдачи паспорта РФ</string>
+    <string name="city">Город</string>
+    <string name="proceed">Продолжить</string>
+    <string name="addPolice">Добавить полис</string>
+    <string name="prolongPolice">Продлить полис</string>
+    <string name="goToPersonalActivity">Открыть личный кабинет</string>
+    <string name="mustSignIn">Нужно авторизоваться</string>
+    <string name="policeCost">Стоимость полиса</string>
+    <string name="policeCar">Автомобиль</string>
+    <string name="policeDriver">Водитель</string>
+    <string name="policeSrok">Срок страхования</string>
+    <string-array name="car_types">
+        <item>Легковой а/м</item>
+        <item>Автобусы</item>
+        <item>Автобусы (категория DE)</item>
+        <item>Грузовой а/м</item>
+        <item>Грузовой а/м (категория CE)</item>
+        <item>Легковой а/м (категория BE)</item>
+        <item>Мотоциклы и мотороллеры</item>
+        <item>Мотоциклы и мотороллеры (категория М)</item>
+        <item>Прицеп к грузовому автомобилю</item>
+        <item>Прицеп к легковым автомобилю</item>
+        <item>Трактора, самоходные и иные машины</item>
+        <item>Трамвай</item>
+        <item>Троллейбус</item>
     </string-array>
+    <string-array name="car_marks">
+        <item>Audi</item>
+        <item>BMW</item>
+        <item>Chevrolet</item>
+        <item>Honda</item>
+        <item>Lada</item>
+        <item>Ford</item>
+        <item>Renault</item>
+    </string-array>
+    <string-array name="car_models">
+        <item>A1</item>
+        <item>A2</item>
+        <item>A3</item>
+        <item>A4</item>
+    </string-array>
+    <string name="enterStateNumber">Введите гос. номер</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
 
 </resources>

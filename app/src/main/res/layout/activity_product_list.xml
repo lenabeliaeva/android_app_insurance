@@ -1,19 +1,23 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<TwoLineListItem
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ProductListActivity">
+    android:layout_height="wrap_content"
+    android:minHeight="?attr/listPreferredItemHeight"
+    android:mode="twoLine">
 
-    <ListView
-        android:id="@+id/prod_list"
+    <TextView android:id="@android:id/text1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        tools:layout_editor_absoluteX="0dp"
-        />
+        android:layout_marginTop="8dp"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:textAppearance="?attr/textAppearanceListItem" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView android:id="@android:id/text2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@android:id/text1"
+        android:textSize="20sp"
+        android:textAppearance="?attr/textAppearanceListItemSecondary" />
+
+</TwoLineListItem>
