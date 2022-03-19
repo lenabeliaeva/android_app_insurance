@@ -44,7 +44,6 @@ public class MyPoliciesFragment extends ListFragment {
     Button signInButton;
     Button signUpButton;
     TextView textView;
-    Button addBtn;
     Strategy strategy;
     Handler uiAdapter;
     List<Police> policies;
