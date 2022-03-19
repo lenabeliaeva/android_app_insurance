@@ -21,6 +21,7 @@ import com.example.insurance.recyclerview.CustomListAdapter;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
+import java.util.Objects;
 
 public class PoliciesCategoryFragment extends Fragment {
     private View view;
@@ -68,7 +69,7 @@ public class PoliciesCategoryFragment extends Fragment {
 
     public void showCategories() {
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getActivity(), RecyclerView.VERTICAL);
-        dividerItemDecoration.setDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.divider_drawable));
+        dividerItemDecoration.setDrawable(Objects.requireNonNull(ContextCompat.getDrawable(getActivity(), R.drawable.divider_drawable)));
         rv = view.findViewById(R.id.rv_pol_categ);
         rv.setHasFixedSize(true);
         rv.setLayoutManager(new LinearLayoutManager(view.getContext()));
