@@ -17,6 +17,6 @@ public class ExampleUnitTest {
 
     @Test
     public void subtraction_isCorrect() {
-        assertEquals(1, 3 - 2);
+        assertEquals(3, 3 - 2);
     }
 }
