@@ -3,6 +3,7 @@ package com.example.insurance.TopLevelScreen;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -48,7 +49,7 @@ public class BestProductsFragment extends Fragment {
     public void showBestProducts() {
         RecyclerView rv = view.findViewById(R.id.rv_best_products);
         rv.setHasFixedSize(true);
-        rv.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        rv.setLayoutManager(new GridLayoutManager(view.getContext(), 2));
         rv.setAdapter(new ProductCardListAdapter(bestProducts));
     }
 }
