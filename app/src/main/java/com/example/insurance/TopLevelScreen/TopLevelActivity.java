@@ -45,27 +45,29 @@ public class TopLevelActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return new PoliciesCategoryFragment(user);
-                case 1:
+                    return new BestProductsFragment();
+                case 2:
                     return new MyPoliciesFragment(user);
+                default:
+                    return new PoliciesCategoryFragment();
             }
-            return null;
         }
 
         @Override
         public int getCount() {
-            return 2;
+            return 3;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return getResources().getText(R.string.get_police);
-                case 1:
+                    return getResources().getText(R.string.best_products_avg);
+                case 2:
                     return getResources().getText(R.string.my_policies);
+                default:
+                    return getResources().getText(R.string.get_police);
             }
-            return null;
         }
     }
 }

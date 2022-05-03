@@ -44,7 +44,6 @@ public class MyPoliciesFragment extends ListFragment {
     Button signInButton;
     Button signUpButton;
     TextView textView;
-    Button addBtn;
     Strategy strategy;
     Handler uiAdapter;
     List<Police> policies;
@@ -66,31 +65,28 @@ public class MyPoliciesFragment extends ListFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View layout;
         if (user.isConnected()) {
-            View layout = inflater.inflate(R.layout.fragment_my_policies, container, false);
+            layout = inflater.inflate(R.layout.fragment_my_policies, container, false);
             strategy = new ShowPolicesStrategy();
             init();
             makeHttpRequest();
-            return layout;
         } else {
-            View layout = inflater.inflate(R.layout.fragment_my_policies_not, container, false);
+            layout = inflater.inflate(R.layout.fragment_my_policies_not, container, false);
             strategy = new SignInStrategy();
-            return layout;
         }
+        return layout;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         strategy.execute(view);
-        AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getActivity(), PoliceActivity.class);
-                intent.putExtra(PoliceActivity.EXTRA_POLICE, policies.get(position));
-                intent.putExtra(PoliceActivity.EXTRA_USER, user);
-                startActivity(intent);
-            }
+        AdapterView.OnItemClickListener itemClickListener = (parent, view1, position, id) -> {
+            Intent intent = new Intent(getActivity(), PoliceActivity.class);
+            intent.putExtra(PoliceActivity.EXTRA_POLICE, policies.get(position));
+            intent.putExtra(PoliceActivity.EXTRA_USER, user);
+            startActivity(intent);
         };
         getListView().setOnItemClickListener(itemClickListener);
     }
@@ -197,21 +193,15 @@ public class MyPoliciesFragment extends ListFragment {
         public void execute(View layout) {
             signInButton = layout.findViewById(R.id.button1);
             signUpButton = layout.findViewById(R.id.button2);
-            signInButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(getActivity(), SignInActivity.class);
-                    intent.putExtra(SignInActivity.EXTRA_USER, user);
-                    startActivity(intent);
-                }
+            signInButton.setOnClickListener(v -> {
+                Intent intent = new Intent(getActivity(), SignInActivity.class);
+                intent.putExtra(SignInActivity.EXTRA_USER, user);
+                startActivity(intent);
             });
-            signUpButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(getActivity(), UserActivity.class);
-                    intent.putExtra(UserActivity.EXTRA_USER, user);
-                    startActivity(intent);
-                }
+            signUpButton.setOnClickListener(v -> {
+                Intent intent = new Intent(getActivity(), UserActivity.class);
+                intent.putExtra(UserActivity.EXTRA_USER, user);
+                startActivity(intent);
             });
         }
     }

@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.insurance.R;
 
 public class RecyclerViewHolder extends RecyclerView.ViewHolder {
-    private TextView tv;
+    private final TextView tv;
 
     public RecyclerViewHolder(@NonNull View itemView) {
         super(itemView);

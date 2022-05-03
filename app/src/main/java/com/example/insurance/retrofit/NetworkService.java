@@ -22,7 +22,11 @@ public class NetworkService {
         return service;
     }
 
-    public CategoriesApi getJSONApi(){
+    public CategoriesApi getJSONApi() {
         return mRetrofit.create(CategoriesApi.class);
+    }
+
+    public ProductApi getJSONProductApi() {
+        return mRetrofit.create(ProductApi.class);
     }
 }

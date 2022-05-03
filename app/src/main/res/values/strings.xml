@@ -5,6 +5,7 @@
     <string name="wait">Ждём пароль</string>
     <string name="enter_login">Введите логин</string>
     <string name="enter_email">E-mail</string>
+    <string name="best_products_avg">Рекомендуемые страховки</string>
     <string name="get_police">Приобрести полис</string>
     <string name="my_policies">Мои страховки</string>
     <string name="click_here_to_sign_up">Ещё нет аккаунта? Зарегестрироваться</string>
@@ -70,5 +71,7 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

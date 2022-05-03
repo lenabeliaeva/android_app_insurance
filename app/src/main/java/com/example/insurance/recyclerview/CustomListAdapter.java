@@ -32,13 +32,10 @@ public class CustomListAdapter extends RecyclerView.Adapter<RecyclerViewHolder> 
     public void onBindViewHolder(@NonNull RecyclerViewHolder holder, final int position) {
         final Category category = categories.get(position);
         holder.getTextView().setText(category.getName());
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), ProductListActivity.class);
-                intent.putExtra(ProductListActivity.EXTRA_POLICE_ID, category.getId());
-                v.getContext().startActivity(intent);
-            }
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(v.getContext(), ProductListActivity.class);
+            intent.putExtra(ProductListActivity.EXTRA_POLICE_ID, category.getId());
+            v.getContext().startActivity(intent);
         });
     }
 
