@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.insurance.ProductListActivity;
+import com.example.insurance.productList.ProductListActivity;
 import com.example.insurance.R;
 import com.example.insurance.pojo.Category;
 
@@ -34,7 +34,7 @@ public class CustomListAdapter extends RecyclerView.Adapter<RecyclerViewHolder> 
         holder.getTextView().setText(category.getName());
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(v.getContext(), ProductListActivity.class);
-            intent.putExtra(ProductListActivity.EXTRA_POLICE_ID, category.getId());
+            intent.putExtra(ProductListActivity.EXTRA_CATEGORY_ID, category.getId());
             v.getContext().startActivity(intent);
         });
     }

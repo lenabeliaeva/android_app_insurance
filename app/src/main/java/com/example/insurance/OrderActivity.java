@@ -43,8 +43,8 @@ public class OrderActivity extends AppCompatActivity {
         user = (User) getIntent().getExtras().get(EXTRA_USER);
         car = user.getCar();
         police = user.getLastPolice();
-        police.setUserId(user.getId());
-        police.setCarId(car.getId());
+        police.setUser(user);
+        police.setCar(car);
         police.setCost(car.getInsuranceCost());
         savePolice();
     }

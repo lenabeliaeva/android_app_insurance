@@ -46,7 +46,7 @@ public class PoliceActivity extends AppCompatActivity {
         user = (User) getIntent().getExtras().get(EXTRA_USER);
         init();
         getCar();
-        getUser();
+//        getUser();
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -127,50 +127,50 @@ public class PoliceActivity extends AppCompatActivity {
         sendHttpRequest.start();
     }
 
-    private void getUser(){
-        final Thread sendHttpRequest = new Thread() {
-            public void run() {
-                URL url;
-                HttpURLConnection connection = null;
-                BufferedReader bufferedReader = null;
-                StringBuilder stringBuilder = new StringBuilder();
-                try {
-                    url = new URL("http://10.0.2.2:8080/getUser");
-                    connection = (HttpURLConnection) url.openConnection();
-                    connection.setDoOutput(true);
-                    connection.setRequestMethod("POST");
-                    connection.connect();
-                    DataOutputStream outputStream = new DataOutputStream(connection.getOutputStream());
-                    outputStream.writeBytes("userId=" + new Gson().toJson(police.getUserId()));
-                    outputStream.flush();
-                    outputStream.close();
-                    String line_from_service;
-                    bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                    while ((line_from_service = bufferedReader.readLine()) != null) {
-                        stringBuilder.append(line_from_service);
-                    }
-                    user = new Gson().fromJson(stringBuilder.toString(), new TypeToken<User>(){}.getType());
-                    Message message = new Message();
-                    message.what = 1;
-                    uiAdapter.sendMessage(message);
-                    connection.disconnect();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } finally {
-                    try {
-                        if (bufferedReader != null) {
-                            bufferedReader.close();
-                        }
-
-                        if (connection != null) {
-                            connection.disconnect();
-                        }
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                    }
-                }
-            }
-        };
-        sendHttpRequest.start();
-    }
+//    private void getUser(){
+//        final Thread sendHttpRequest = new Thread() {
+//            public void run() {
+//                URL url;
+//                HttpURLConnection connection = null;
+//                BufferedReader bufferedReader = null;
+//                StringBuilder stringBuilder = new StringBuilder();
+//                try {
+//                    url = new URL("http://10.0.2.2:8080/getUser");
+//                    connection = (HttpURLConnection) url.openConnection();
+//                    connection.setDoOutput(true);
+//                    connection.setRequestMethod("POST");
+//                    connection.connect();
+//                    DataOutputStream outputStream = new DataOutputStream(connection.getOutputStream());
+//                    outputStream.writeBytes("userId=" + new Gson().toJson(police.getUserId()));
+//                    outputStream.flush();
+//                    outputStream.close();
+//                    String line_from_service;
+//                    bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+//                    while ((line_from_service = bufferedReader.readLine()) != null) {
+//                        stringBuilder.append(line_from_service);
+//                    }
+//                    user = new Gson().fromJson(stringBuilder.toString(), new TypeToken<User>(){}.getType());
+//                    Message message = new Message();
+//                    message.what = 1;
+//                    uiAdapter.sendMessage(message);
+//                    connection.disconnect();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                } finally {
+//                    try {
+//                        if (bufferedReader != null) {
+//                            bufferedReader.close();
+//                        }
+//
+//                        if (connection != null) {
+//                            connection.disconnect();
+//                        }
+//                    } catch (IOException ex) {
+//                        ex.printStackTrace();
+//                    }
+//                }
+//            }
+//        };
+//        sendHttpRequest.start();
+//    }
 }

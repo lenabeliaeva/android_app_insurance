@@ -4,9 +4,11 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Police implements Serializable {
-    private int id, userId, carId, number, typeOfObject;
+    private int id, number, typeOfObject;
     private double cost;
     private Date start, end;
+    private Car car;
+    private User user;
 
     public int getId() {
         return id;
@@ -16,20 +18,20 @@ public class Police implements Serializable {
         this.id = id;
     }
 
-    public int getUserId() {
-        return userId;
+    public Car getCarId() {
+        return car;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setCar(Car car) {
+        this.car = car;
     }
 
-    public int getCarId() {
-        return carId;
+    public User getUser() {
+        return user;
     }
 
-    public void setCarId(int carId) {
-        this.carId = carId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public int getNumber() {

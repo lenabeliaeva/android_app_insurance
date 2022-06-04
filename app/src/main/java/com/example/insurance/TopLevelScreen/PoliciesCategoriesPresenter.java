@@ -20,7 +20,7 @@ public class PoliciesCategoriesPresenter {
 
     public void tryGetCategories() {
         NetworkService.getInstance()
-                .getJSONApi()
+                .getJSONCategoriesApi()
                 .getPoliciesCategoriesList()
                 .enqueue(new Callback<List<Category>>() {
                     @Override

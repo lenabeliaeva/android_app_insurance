@@ -8,14 +8,15 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import android.widget.TwoLineListItem;
 
-import java.util.ArrayList;
+import com.example.insurance.pojo.Product;
+
 import java.util.List;
 
 public class ProductListAdapter extends BaseAdapter {
     private Context context;
     private List<Product> products;
 
-    ProductListAdapter(Context context, ArrayList<Product> products){
+    public ProductListAdapter(Context context, List<Product> products){
         this.context = context;
         this.products = products;
     }

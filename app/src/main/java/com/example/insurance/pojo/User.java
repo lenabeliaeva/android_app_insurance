@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+
 public class User implements Serializable {
     private int id;
     private String name, secondName, surname, birthDate, passport, passportDate, email, password, city;

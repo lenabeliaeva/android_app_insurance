@@ -9,6 +9,6 @@ import retrofit2.http.GET;
 
 public interface CategoriesApi {
 
-    @GET("/policies")
+    @GET("/categories")
     Call<List<Category>> getPoliciesCategoriesList();
 }

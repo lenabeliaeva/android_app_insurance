@@ -27,7 +27,7 @@
         <activity
             android:name=".UserActivity"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".ProductListActivity" />
+        <activity android:name=".productList.ProductListActivity" />
         <activity android:name=".FillingPoliceActivity" />
         <activity
             android:name=".SignUpActivity"

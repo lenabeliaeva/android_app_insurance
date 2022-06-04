@@ -70,7 +70,8 @@ public class MyPoliciesFragment extends ListFragment {
             layout = inflater.inflate(R.layout.fragment_my_policies, container, false);
             strategy = new ShowPolicesStrategy();
             init();
-            makeHttpRequest();
+            MyPoliciesPresenter presenter = new MyPoliciesPresenter(this);
+            presenter.tryGetUserPoliciesList(user.getId());
         } else {
             layout = inflater.inflate(R.layout.fragment_my_policies_not, container, false);
             strategy = new SignInStrategy();
@@ -132,60 +133,8 @@ public class MyPoliciesFragment extends ListFragment {
         }
     }
 
-    private void makeHttpRequest() {
-        Thread sendHttpRequest = new Thread() {
-            public void run() {
-                URL url;
-                HttpURLConnection connection = null;
-                BufferedReader bufferedReader = null;
-                StringBuilder stringBuilder = new StringBuilder();
-                try {
-                    url = new URL("http://10.0.2.2:8080/getPoliciesList");
-                    connection = (HttpURLConnection) url.openConnection();
-                    connection.setDoOutput(true);
-                    connection.setRequestMethod("POST");
-                    connection.connect();
-                    DataOutputStream outputStream = new DataOutputStream(connection.getOutputStream());
-                    outputStream.writeBytes("userId=" + new Gson().toJson(user.getId()));
-                    outputStream.flush();
-                    outputStream.close();
-                    bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                    String line_from_service;
-                    while ((line_from_service = bufferedReader.readLine()) != null) {
-                        stringBuilder.append(line_from_service);
-                    }
-                    Message message = new Message();
-                    message.what = 1;
-                    Bundle bundle = new Bundle();
-                    if (stringBuilder.toString().equals("false")) {
-                        bundle.putSerializable(KEY_RESPONSE_TEXT, "false");
-                    } else {
-                        System.out.println(stringBuilder.toString());
-                        user.addPolicies((List<Police>) new Gson().fromJson(stringBuilder.toString(), new TypeToken<ArrayList<Police>>() {
-                        }.getType()));
-                        bundle.putSerializable(KEY_RESPONSE_TEXT, (Serializable) user.getPolicies());
-                    }
-                    message.setData(bundle);
-                    uiAdapter.sendMessage(message);
-                    connection.disconnect();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } finally {
-                    try {
-                        if (bufferedReader != null) {
-                            bufferedReader.close();
-                        }
-
-                        if (connection != null) {
-                            connection.disconnect();
-                        }
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                    }
-                }
-            }
-        };
-        sendHttpRequest.start();
+    public void setPoliciesList(List<Police> policies) {
+        this.policies = policies;
     }
 
     class SignInStrategy implements Strategy {
