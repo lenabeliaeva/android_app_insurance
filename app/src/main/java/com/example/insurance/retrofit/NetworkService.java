@@ -35,4 +35,16 @@ public class NetworkService {
     public PoliceApi getJSONPoliceApi() {
         return mRetrofit.create(PoliceApi.class);
     }
+
+    public UserApi getJSONUserApi() {
+        return mRetrofit.create(UserApi.class);
+    }
+
+    public CarApi getJSONCarApi() {
+        return mRetrofit.create(CarApi.class);
+    }
+
+    public RatingApi getJSONRatingApi() {
+        return mRetrofit.create(RatingApi.class);
+    }
 }

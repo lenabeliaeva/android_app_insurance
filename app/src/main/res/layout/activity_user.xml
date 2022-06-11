@@ -82,7 +82,24 @@
         android:autofillHints="@string/city"
         android:background="@drawable/fields"
         android:hint="@string/city"
-        android:inputType="textEmailAddress"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:textColorHint="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.31" />
+
+    <EditText
+        android:id="@+id/age"
+        android:layout_width="400dp"
+        android:layout_height="50dp"
+        android:autofillHints="@string/age"
+        android:background="@drawable/fields"
+        android:hint="@string/age"
+        android:inputType="number"
         android:textAlignment="center"
         android:textColorHint="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -91,6 +108,55 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.41" />
+
+    <Spinner
+        android:id="@+id/gender"
+        android:layout_width="400dp"
+        android:layout_height="50dp"
+        android:autofillHints="@string/sex"
+        android:background="@drawable/fields"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.51" />
+
+    <Spinner
+        android:id="@+id/edu"
+        android:layout_width="400dp"
+        android:layout_height="50dp"
+        android:background="@drawable/fields"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.61" />
+
+    <Spinner
+        android:id="@+id/act_sphere"
+        android:layout_width="400dp"
+        android:layout_height="50dp"
+        android:background="@drawable/fields"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.71" />
+
+    <Spinner
+        android:id="@+id/income"
+        android:layout_width="400dp"
+        android:layout_height="50dp"
+        android:background="@drawable/fields"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.81" />
 
     <Button
         android:id="@+id/proceed_btn"

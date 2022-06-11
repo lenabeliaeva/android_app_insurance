@@ -7,6 +7,7 @@
     <string name="enter_email">E-mail</string>
     <string name="best_products_avg">Рекомендуемые страховки</string>
     <string name="get_police">Приобрести полис</string>
+    <string name="lk">Личный кабинет</string>
     <string name="my_policies">Мои страховки</string>
     <string name="click_here_to_sign_up">Ещё нет аккаунта? Зарегестрироваться</string>
     <string name="click_here_to_sign_in">Уже есть аккаунт? Войти</string>
@@ -25,6 +26,8 @@
     <string name="proceed">Продолжить</string>
     <string name="addPolice">Добавить полис</string>
     <string name="prolongPolice">Продлить полис</string>
+    <string name="ratePolice">Оценить полис</string>
+    <string name="goToQuest">Заполнить анкету</string>
     <string name="goToPersonalActivity">Открыть личный кабинет</string>
     <string name="mustSignIn">Нужно авторизоваться</string>
     <string name="policeCost">Стоимость полиса</string>
@@ -73,5 +76,8 @@
     <string name="login_failed">"Login failed"</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="your_policies">ВАШИ СТРАХОВЫЕ ПОЛИСЫ</string>
+    <string name="age">Возраст</string>
+    <string name="sex">Пол</string>
 
 </resources>

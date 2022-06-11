@@ -1,6 +1,5 @@
 package com.example.insurance.TopLevelScreen;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -8,8 +7,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.ListFragment;
 
-import android.os.Handler;
-import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,33 +16,21 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.insurance.PoliceActivity;
+import com.example.insurance.QuestionnaireActivity;
 import com.example.insurance.R;
 import com.example.insurance.SignInActivity;
 import com.example.insurance.UserActivity;
 import com.example.insurance.pojo.Police;
 import com.example.insurance.pojo.User;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.Serializable;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 
 public class MyPoliciesFragment extends ListFragment {
-    private static final String KEY_RESPONSE_TEXT = "true";
-    private static final String BAD_RESPONSE = "false";
     User user;
     Button signInButton;
     Button signUpButton;
+    Button questButton;
     TextView textView;
     Strategy strategy;
-    Handler uiAdapter;
     List<Police> policies;
     String[] policiesArray;
 
@@ -69,7 +54,6 @@ public class MyPoliciesFragment extends ListFragment {
         if (user.isConnected()) {
             layout = inflater.inflate(R.layout.fragment_my_policies, container, false);
             strategy = new ShowPolicesStrategy();
-            init();
             MyPoliciesPresenter presenter = new MyPoliciesPresenter(this);
             presenter.tryGetUserPoliciesList(user.getId());
         } else {
@@ -95,46 +79,38 @@ public class MyPoliciesFragment extends ListFragment {
     class ShowPolicesStrategy implements Strategy {
         @Override
         public void execute(View view) {
+            questButton = view.findViewById(R.id.quest_btn);
+            questButton.setOnClickListener(v -> {
+                Intent intent = new Intent(getActivity(), QuestionnaireActivity.class);
+                intent.putExtra(UserActivity.EXTRA_USER, user);
+                startActivity(intent);
+            });
             textView = view.findViewById(R.id.my_p_l);
         }
     }
 
-    @SuppressLint("HandlerLeak")
-    private void init() {
-        if (uiAdapter == null) {
-            uiAdapter = new Handler() {
-                @Override
-                public void handleMessage(Message msg) {
-                    if (msg.what == 1) {
-                        Bundle bundle = msg.getData();
-                        if (bundle != null) {
-                            if (!BAD_RESPONSE.equals(bundle.getSerializable(KEY_RESPONSE_TEXT))) {
-                                policies = user.getPolicies();
-                                policiesArray = new String[policies.size()];
-                                Police police;
-                                for (int i = 0; i < policies.size(); ++i) {
-                                    police = policies.get(i);
-                                    policiesArray[i] = police.toString();
-                                }
-                                ArrayAdapter<String> policiesAdapter = new ArrayAdapter<>(
-                                        requireActivity(),
-                                        R.layout.category_list_item,
-                                        R.id.cat_list_item,
-                                        policiesArray
-                                );
-                                setListAdapter(policiesAdapter);
-                            } else {
-                                textView.setText("Пока ни одного приобретённого полиса");
-                            }
-                        }
-                    }
-                }
-            };
-        }
-    }
-
     public void setPoliciesList(List<Police> policies) {
-        this.policies = policies;
+//        if (policies.size() < 1) {
+//            textView.setText("Пока ни одного приобретённого полиса");
+//        } else {
+        Police mock = new Police();
+        mock.setTypeOfObject(22);
+            this.policies = policies;
+            policies.add(mock);
+            policiesArray = new String[policies.size()];
+            Police police;
+            for (int i = 0; i < policies.size(); ++i) {
+                police = policies.get(i);
+                policiesArray[i] = police.toString();
+            }
+            ArrayAdapter<String> policiesAdapter = new ArrayAdapter<>(
+                    requireActivity(),
+                    R.layout.category_list_item,
+                    R.id.cat_list_item,
+                    policiesArray
+            );
+            setListAdapter(policiesAdapter);
+//        }
     }
 
     class SignInStrategy implements Strategy {

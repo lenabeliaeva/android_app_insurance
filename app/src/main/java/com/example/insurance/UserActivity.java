@@ -7,26 +7,19 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 
 import com.example.insurance.pojo.User;
-
-import java.util.Calendar;
 
 public class UserActivity extends AppCompatActivity {
     private User user;
     private EditText name;
     private EditText secondName;
     private EditText surname;
-    private DatePicker birthDate;
     private EditText passport;
-    private DatePicker passportDate;
     private EditText city;
     private Button btn;
-    private Calendar calendar = Calendar.getInstance();
     public static final String EXTRA_USER = "user";
 
     @Override
@@ -35,8 +28,6 @@ public class UserActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user);
         setTitle("Ввод личных данных");
         user = (User) getIntent().getExtras().get(EXTRA_USER);
-
-        initControls();
 
         name.addTextChangedListener(new TextWatcher() {
             @Override
@@ -138,13 +129,10 @@ public class UserActivity extends AppCompatActivity {
             }
         });
 
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(UserActivity.this, SignUpActivity.class);
-                intent.putExtra(SignInActivity.EXTRA_USER, user);
-                startActivity(intent);
-            }
+        btn.setOnClickListener(v -> {
+            Intent intent = new Intent(UserActivity.this, SignUpActivity.class);
+            intent.putExtra(SignInActivity.EXTRA_USER, user);
+            startActivity(intent);
         });
     }
 

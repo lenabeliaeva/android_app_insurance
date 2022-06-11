@@ -9,6 +9,7 @@ public class Police implements Serializable {
     private Date start, end;
     private Car car;
     private User user;
+    private Product product;
 
     public int getId() {
         return id;
@@ -18,7 +19,15 @@ public class Police implements Serializable {
         this.id = id;
     }
 
-    public Car getCarId() {
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public Car getCar() {
         return car;
     }
 

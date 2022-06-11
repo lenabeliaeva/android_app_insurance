@@ -99,36 +99,27 @@ public class FillingPoliceActivity extends AppCompatActivity implements DatePick
                 }
             }
         });
-        startDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DialogFragment datePicker = new DatePickerFragment();
-                datePicker.show(getSupportFragmentManager(), "date picker");
-                if (c != null) {
-                    police.setStart(c.getTime());
-                }
+        startDate.setOnClickListener(v -> {
+            DialogFragment datePicker = new DatePickerFragment();
+            datePicker.show(getSupportFragmentManager(), "date picker");
+            if (c != null) {
+                police.setStart(c.getTime());
             }
         });
-        endDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DialogFragment datePicker = new DatePickerFragment();
-                datePicker.show(getSupportFragmentManager(), "date picker");
-                if (c != null){
-                    police.setEnd(c.getTime());
-                }
+        endDate.setOnClickListener(v -> {
+            DialogFragment datePicker = new DatePickerFragment();
+            datePicker.show(getSupportFragmentManager(), "date picker");
+            if (c != null){
+                police.setEnd(c.getTime());
             }
         });
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                System.out.println("POLICE "+ new Gson().toJson(police));
-                Intent intent = new Intent(FillingPoliceActivity.this, FillingUserActivity.class);
-                user.addCar(car);
-                user.addPolice(police);
-                intent.putExtra(UserActivity.EXTRA_USER, user);
-                startActivity(intent);
-            }
+        button.setOnClickListener(v -> {
+            System.out.println("POLICE "+ new Gson().toJson(police));
+            Intent intent = new Intent(FillingPoliceActivity.this, FillingUserActivity.class);
+            user.addCar(car);
+            user.addPolice(police);
+            intent.putExtra(UserActivity.EXTRA_USER, user);
+            startActivity(intent);
         });
         AdapterView.OnItemSelectedListener itemSelectedListener = new AdapterView.OnItemSelectedListener() {
             @Override

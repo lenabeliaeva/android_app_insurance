@@ -9,6 +9,11 @@ import java.util.List;
 public class User implements Serializable {
     private int id;
     private String name, secondName, surname, birthDate, passport, passportDate, email, password, city;
+    private int age;
+    private Gender gender;
+    private EducationLevel educationLevel;
+    private ActivitySphere activitySphere;
+    private IncomeLevel incomeLevel;
     private boolean isConnected = false;
     private List<Police> policies = new ArrayList<>();
     private Police police;
@@ -16,6 +21,38 @@ public class User implements Serializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    public EducationLevel getEducationLevel() {
+        return educationLevel;
+    }
+
+    public void setEducationLevel(EducationLevel educationLevel) {
+        this.educationLevel = educationLevel;
+    }
+
+    public ActivitySphere getActivitySphere() {
+        return activitySphere;
+    }
+
+    public void setActivitySphere(ActivitySphere activitySphere) {
+        this.activitySphere = activitySphere;
+    }
+
+    public IncomeLevel getIncomeLevel() {
+        return incomeLevel;
+    }
+
+    public void setIncomeLevel(IncomeLevel incomeLevel) {
+        this.incomeLevel = incomeLevel;
     }
 
     public void setEmail(String email) {
@@ -102,6 +139,14 @@ public class User implements Serializable {
 
     public Car getCar(){
         return cars.remove(cars.size() - 1);
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 
     @Override
