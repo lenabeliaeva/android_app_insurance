@@ -97,7 +97,7 @@ public class QuestionnairePresenter {
                 .enqueue(new Callback<User>() {
                     @Override
                     public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
-                        activity.showSuccess();
+                        activity.showSuccess(response.body());
                     }
 
                     @Override

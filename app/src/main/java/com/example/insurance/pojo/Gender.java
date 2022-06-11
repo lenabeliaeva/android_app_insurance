@@ -1,4 +1,6 @@
 package com.example.insurance.pojo;
 
-public class Gender extends UserDataObject {
+import java.io.Serializable;
+
+public class Gender extends UserDataObject implements Serializable {
 }

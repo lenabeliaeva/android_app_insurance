@@ -1,4 +1,6 @@
 package com.example.insurance.pojo;
 
-public class EducationLevel extends UserDataObject {
+import java.io.Serializable;
+
+public class EducationLevel extends UserDataObject implements Serializable {
 }

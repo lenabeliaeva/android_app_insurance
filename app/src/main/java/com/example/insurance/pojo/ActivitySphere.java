@@ -1,4 +1,6 @@
 package com.example.insurance.pojo;
 
-public class ActivitySphere extends UserDataObject {
+import java.io.Serializable;
+
+public class ActivitySphere extends UserDataObject implements Serializable {
 }

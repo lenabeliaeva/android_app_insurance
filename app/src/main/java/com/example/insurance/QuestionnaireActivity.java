@@ -2,6 +2,7 @@ package com.example.insurance;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
@@ -13,6 +14,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.insurance.TopLevelScreen.TopLevelActivity;
 import com.example.insurance.pojo.ActivitySphere;
 import com.example.insurance.pojo.EducationLevel;
 import com.example.insurance.pojo.Gender;
@@ -144,10 +146,13 @@ public class QuestionnaireActivity extends AppCompatActivity {
         });
     }
 
-    public void showSuccess() {
+    public void showSuccess(User updated) {
         Toast toast = Toast.makeText(QuestionnaireActivity.this, "", Toast.LENGTH_LONG);
         toast.setText("Ответы сохранены");
         toast.show();
+        Intent intent = new Intent(QuestionnaireActivity.this, TopLevelActivity.class);
+        intent.putExtra(TopLevelActivity.EXTRA_USER, updated);
+        startActivity(intent);
     }
 
     private void initControls() {
