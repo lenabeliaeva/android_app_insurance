@@ -6,6 +6,7 @@ public class Product {
     private String description;
     private Category category;
     private float bayesAverageRating;
+    private float bar;
 
     public long getId() {
         return id;
@@ -19,11 +20,11 @@ public class Product {
         return description;
     }
 
-    public Category getCategory() {
-        return category;
-    }
-
     public float getBayesAverageRating() {
         return bayesAverageRating;
+    }
+
+    public float getBar() {
+        return bar;
     }
 }

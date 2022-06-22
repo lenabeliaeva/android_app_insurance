@@ -45,7 +45,7 @@ public class TopLevelActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return new BestProductsFragment();
+                    return new BestProductsFragment(user);
                 case 2:
                     return new MyPoliciesFragment(user);
                 default:

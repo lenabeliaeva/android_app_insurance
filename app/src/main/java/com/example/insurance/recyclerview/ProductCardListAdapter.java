@@ -32,7 +32,7 @@ public class ProductCardListAdapter extends RecyclerView.Adapter<CardListRVHolde
     public void onBindViewHolder(@NonNull CardListRVHolder holder, int position) {
         final Product product = products.get(position);
         holder.getTvName().setText(product.getName());
-        holder.getRatingBar().setRating(product.getBayesAverageRating());
+        holder.getRatingBar().setRating(product.getBar());
         holder.getImage().setImageResource(R.drawable.common_product);
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(v.getContext(), FillingPoliceActivity.class);

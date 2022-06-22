@@ -1,7 +1,5 @@
 package com.example.insurance.retrofit;
 
-import com.example.insurance.pojo.Police;
-
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -38,10 +36,6 @@ public class NetworkService {
 
     public UserApi getJSONUserApi() {
         return mRetrofit.create(UserApi.class);
-    }
-
-    public CarApi getJSONCarApi() {
-        return mRetrofit.create(CarApi.class);
     }
 
     public RatingApi getJSONRatingApi() {
